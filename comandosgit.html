@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comandos Git - Guía de Referencia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-book"></i> Comandos Git - Guía de Referencia</h1>
+        <p class="subtitle">Los comandos más importantes para control de versiones</p>
+
+        <!-- MENÚ DE NAVEGACIÓN -->
+        <nav class="menu-navegacion" id="menu">
+            <h3 class="menu-title"><i class="fas fa-list"></i> Índice de Contenidos</h3>
+            <div class="menu-grid">
+                <a href="#autenticacion" class="menu-item">
+                    <i class="fas fa-key"></i>
+                    <span>Autenticación y Sesión</span>
+                </a>
+                <a href="#configuracion" class="menu-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Configuración Inicial</span>
+                </a>
+                <a href="#crear-clonar" class="menu-item">
+                    <i class="fas fa-box"></i>
+                    <span>Crear y Clonar</span>
+                </a>
+                <a href="#cambios" class="menu-item">
+                    <i class="fas fa-edit"></i>
+                    <span>Realizar Cambios</span>
+                </a>
+                <a href="#historial" class="menu-item">
+                    <i class="fas fa-history"></i>
+                    <span>Ver Historial</span>
+                </a>
+                <a href="#ramas" class="menu-item">
+                    <i class="fas fa-code-branch"></i>
+                    <span>Trabajar con Ramas</span>
+                </a>
+                <a href="#remotos" class="menu-item">
+                    <i class="fas fa-cloud"></i>
+                    <span>Repositorios Remotos</span>
+                </a>
+                <a href="#deshacer" class="menu-item">
+                    <i class="fas fa-undo"></i>
+                    <span>Deshacer Cambios</span>
+                </a>
+                <a href="#otros" class="menu-item">
+                    <i class="fas fa-tools"></i>
+                    <span>Otros Comandos</span>
+                </a>
+                <a href="#flujo" class="menu-item">
+                    <i class="fas fa-sync-alt"></i>
+                    <span>Flujo de Trabajo</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- AUTENTICACIÓN Y SESIÓN -->
+        <div class="category" id="autenticacion">
+            <h2 class="category-title"><span class="icon"><i class="fas fa-key"></i></span>Autenticación y Sesión (GitHub CLI)</h2>
+            
+            <!-- GUÍA DE INSTALACIÓN -->
+            <div class="installation-guide">
+                <h3 class="installation-title"><i class="fas fa-download"></i> Guía de Instalación de GitHub CLI</h3>
+                
+                <div class="installation-section">
+                    <h4><i class="fas fa-terminal"></i> Instalación mediante PowerShell</h4>
+                    <p class="installation-desc">Para instalar GitHub CLI en Windows usando PowerShell, sigue estos pasos:</p>
+                    
+                    <div class="installation-steps-grid">
+                        <div class="installation-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h5>Instalar Winget (si no lo tienes)</h5>
+                                <p>Winget viene preinstalado en Windows 11. Para Windows 10, descárgalo desde Microsoft Store buscando "App Installer"</p>
+                            </div>
+                        </div>
+
+                        <div class="installation-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h5>Instalar GitHub CLI con Winget</h5>
+                                <div class="command">
+                                    <span class="command-text">winget install --id GitHub.cli</span>
+                                    <button class="copy-btn" onclick="copyCommand(this, `winget install --id GitHub.cli`)">
+                                        <i class="far fa-copy"></i> Copiar
+                                    </button>
+                                </div>
+                                <p class="step-note">Este comando instalará la versión más reciente de GitHub CLI</p>
+                            </div>
+                        </div>
+
+                        <div class="installation-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h5>Verificar la instalación</h5>
+                                <div class="command">
+                                    <span class="command-text">gh --version</span>
+                                    <button class="copy-btn" onclick="copyCommand(this, `gh --version`)">
+                                        <i class="far fa-copy"></i> Copiar
+                                    </button>
+                                </div>
+                                <p class="step-note">Deberías ver la versión instalada de GitHub CLI</p>
+                            </div>
+                        </div>
+
+
+                    <div class="installation-note">
+                        <i class="fas fa-info-circle"></i>
+                        <div>
+                            <strong>Nota importante:</strong> Después de instalar GitHub CLI, es posible que necesites reiniciar tu terminal o PowerShell para que los comandos estén disponibles.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="commands-section-title"><i class="fas fa-terminal"></i> Comandos de Autenticación</h3>
+            
+            <div class="commands-grid">
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">gh auth login</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `gh auth login`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Inicia sesión en GitHub a través de la línea de comandos. Te guía paso a paso para autenticarte con tu cuenta de GitHub.
+                </div>
+                <div class="example">Te pedirá elegir entre GitHub.com o GitHub Enterprise, y el método de autenticación (navegador o token)</div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">gh auth status</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `gh auth status`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Muestra el estado de autenticación actual, incluyendo el usuario conectado y los scopes disponibles.
+                </div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">gh auth logout</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `gh auth logout`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Cierra la sesión de GitHub CLI y elimina las credenciales almacenadas localmente.
+                </div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">gh auth refresh</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `gh auth refresh`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Actualiza y expande los permisos de autenticación. Útil cuando necesitas agregar más scopes a tu sesión.
+                </div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">gh auth setup-git</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `gh auth setup-git`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Configura Git para usar GitHub CLI como ayudante de credenciales para operaciones HTTPS.
+                </div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">gh repo create nombre-repo --public</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `gh repo create nombre-repo --public`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Crea un nuevo repositorio público en GitHub desde la línea de comandos. Puedes usar --private para crear un repositorio privado.
+                </div>
+                <div class="example">Ejemplo: gh repo create mi-proyecto --public --description "Mi nuevo proyecto"</div>
+            </div>
+            </div>
+        </div>
+
+        <!-- CONFIGURACIÓN INICIAL -->
+        <div class="category" id="configuracion">
+            <h2 class="category-title"><span class="icon"><i class="fas fa-cog"></i></span>Configuración Inicial</h2>
+            
+            <div class="commands-grid">
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git config --global user.name "Tu Nombre"</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git config --global user.name &quot;Tu Nombre&quot;`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Configura tu nombre de usuario para todos los repositorios. Este nombre aparecerá en los commits.
+                </div>
+                <div class="example">Ejemplo: git config --global user.name "Juan Pérez"</div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git config --global user.email "email@ejemplo.com"</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git config --global user.email &quot;email@ejemplo.com&quot;`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Configura tu email para todos los repositorios. Es necesario para identificar al autor de los commits.
+                </div>
+                <div class="example">Ejemplo: git config --global user.email "juan@email.com"</div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git config --list</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git config --list`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Muestra todas las configuraciones actuales de Git (usuario, email, etc.).
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- CREAR Y CLONAR REPOSITORIOS -->
+        <div class="category" id="crear-clonar">
+            <h2 class="category-title"><span class="icon"><i class="fas fa-box"></i></span>Crear y Clonar Repositorios</h2>
+            
+            <div class="commands-grid">
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git init</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git init`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Inicializa un nuevo repositorio Git en el directorio actual. Crea la carpeta oculta .git donde se guarda todo el historial.
+                </div>
+                <div class="example">Úsalo cuando empiezas un proyecto nuevo desde cero</div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git clone [url]</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git clone [url]`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Crea una copia local de un repositorio remoto. Descarga todo el historial y archivos del proyecto.
+                </div>
+                <div class="example">Ejemplo: git clone https://github.com/usuario/proyecto.git</div>
+            </div>
+            </div>
+        </div>
+
+        <!-- CAMBIOS BÁSICOS -->
+        <div class="category" id="cambios">
+            <h2 class="category-title"><span class="icon"><i class="fas fa-edit"></i></span>Realizar Cambios</h2>
+            
+            <div class="commands-grid">
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git status</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git status`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Muestra el estado actual del repositorio: archivos modificados, archivos en staging, branch actual, etc. Es uno de los comandos más usados.
+                </div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git add [archivo]</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git add [archivo]`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Añade archivos al área de staging (preparación). Los archivos deben estar en staging antes de hacer commit.
+                </div>
+                <div class="example">
+                    git add index.html → añade un archivo específico<br>
+                    git add . → añade todos los archivos modificados
+                </div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git commit -m "mensaje"</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git commit -m &quot;mensaje&quot;`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Guarda los cambios del área de staging en el historial del repositorio. El mensaje debe describir qué cambios se hicieron.
+                </div>
+                <div class="example">Ejemplo: git commit -m "Agrega página de contacto"</div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git commit -am "mensaje"</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git commit -am &quot;mensaje&quot;`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Hace add y commit en un solo paso para archivos que ya están siendo rastreados (tracked).
+                </div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git diff</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git diff`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Muestra las diferencias entre los archivos modificados y la última versión guardada.
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- HISTORIAL -->
+        <div class="category" id="historial">
+            <h2 class="category-title"><span class="icon"><i class="fas fa-history"></i></span>Ver Historial</h2>
+            
+            <div class="commands-grid">
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git log</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git log`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Muestra el historial de commits del repositorio con detalles completos (autor, fecha, mensaje).
+                </div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git log --oneline</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git log --oneline`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Muestra el historial de commits de forma compacta (una línea por commit). Útil para ver el historial rápidamente.
+                </div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git log --graph</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git log --graph`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Muestra el historial con un gráfico ASCII de las ramas y merges. Ayuda a visualizar la estructura del proyecto.
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- RAMAS (BRANCHES) -->
+        <div class="category" id="ramas">
+            <h2 class="category-title"><span class="icon"><i class="fas fa-code-branch"></i></span>Trabajar con Ramas (Branches)</h2>
+            
+            <div class="commands-grid">
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git branch</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git branch`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Lista todas las ramas locales. La rama actual se marca con un asterisco (*).
+                </div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git branch [nombre]</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git branch [nombre]`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Crea una nueva rama con el nombre especificado. Las ramas permiten trabajar en características separadas.
+                </div>
+                <div class="example">Ejemplo: git branch desarrollo</div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git checkout [rama]</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git checkout [rama]`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Cambia a la rama especificada. Actualiza los archivos del directorio de trabajo a esa rama.
+                </div>
+                <div class="example">Ejemplo: git checkout desarrollo</div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git checkout -b [nombre]</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git checkout -b [nombre]`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Crea una nueva rama y cambia a ella inmediatamente (combina branch + checkout).
+                </div>
+                <div class="example">Ejemplo: git checkout -b nueva-funcionalidad</div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git merge [rama]</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git merge [rama]`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Fusiona la rama especificada con la rama actual. Combina los cambios de ambas ramas.
+                </div>
+                <div class="example">Ejemplo: git merge desarrollo (estando en main)</div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git branch -d [rama]</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git branch -d [rama]`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Elimina una rama local. Solo funciona si la rama ya fue fusionada (merge).
+                </div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git branch -D [rama]</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git branch -D [rama]`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Elimina una rama local forzadamente, incluso si no ha sido fusionada.
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- REPOSITORIOS REMOTOS -->
+        <div class="category" id="remotos">
+            <h2 class="category-title"><span class="icon"><i class="fas fa-cloud"></i></span>Repositorios Remotos</h2>
+            
+            <div class="commands-grid">
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git remote add origin [url]</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git remote add origin [url]`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Conecta tu repositorio local con un repositorio remoto (GitHub, GitLab, etc.). "origin" es el nombre estándar.
+                </div>
+                <div class="example">Ejemplo: git remote add origin https://github.com/usuario/proyecto.git</div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git remote -v</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git remote -v`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Muestra los repositorios remotos configurados con sus URLs.
+                </div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git push origin [rama]</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git push origin [rama]`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Envía los commits de tu rama local al repositorio remoto. "Sube" tus cambios a GitHub/GitLab.
+                </div>
+                <div class="example">Ejemplo: git push origin main</div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git push -u origin [rama]</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git push -u origin [rama]`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Primera vez que subes una rama. El -u guarda la configuración para futuros push.
+                </div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git pull</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git pull`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Descarga los cambios del repositorio remoto y los fusiona con tu rama actual. Es fetch + merge.
+                </div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git fetch</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git fetch`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Descarga los cambios del repositorio remoto pero NO los fusiona. Te permite revisar antes de integrar.
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- DESHACER CAMBIOS -->
+        <div class="category" id="deshacer">
+            <h2 class="category-title"><span class="icon"><i class="fas fa-undo"></i></span>Deshacer Cambios</h2>
+            
+            <div class="commands-grid">
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git restore [archivo]</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git restore [archivo]`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Descarta los cambios de un archivo modificado y lo restaura a la última versión del commit.
+                </div>
+                <div class="example">Ejemplo: git restore index.html</div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git restore --staged [archivo]</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git restore --staged [archivo]`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Quita un archivo del área de staging (deshace git add) pero mantiene los cambios en el archivo.
+                </div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git reset [archivo]</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git reset [archivo]`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Quita archivos del área de staging. Alternativa a git restore --staged.
+                </div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git reset --hard [commit]</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git reset --hard [commit]`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Vuelve a un commit específico eliminando todos los cambios posteriores. ⚠️ CUIDADO: es irreversible.
+                </div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git revert [commit]</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git revert [commit]`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Crea un nuevo commit que deshace los cambios de un commit anterior. Forma segura de deshacer.
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- OTROS COMANDOS ÚTILES -->
+        <div class="category" id="otros">
+            <h2 class="category-title"><span class="icon"><i class="fas fa-tools"></i></span>Otros Comandos Útiles</h2>
+            
+            <div class="commands-grid">
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git stash</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git stash`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Guarda temporalmente los cambios sin hacer commit. Útil cuando necesitas cambiar de rama pero no quieres hacer commit.
+                </div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git stash pop</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git stash pop`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Restaura los cambios guardados con git stash y los elimina del stash.
+                </div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git rm [archivo]</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git rm [archivo]`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Elimina un archivo del repositorio y del directorio de trabajo.
+                </div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git mv [origen] [destino]</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git mv [origen] [destino]`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Mueve o renombra un archivo y prepara el cambio para commit.
+                </div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git tag [nombre]</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git tag [nombre]`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Crea una etiqueta (tag) para marcar un punto específico del historial (versiones, releases).
+                </div>
+                <div class="example">Ejemplo: git tag v1.0.0</div>
+            </div>
+
+            <div class="command-item">
+                <div class="command-wrapper">
+                    <div class="command">
+                        <span class="command-text">git --help</span>
+                        <button class="copy-btn" onclick="copyCommand(this, `git --help`)">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    Muestra la ayuda general de Git. También puedes usar git [comando] --help para ayuda específica.
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- FLUJO BÁSICO -->
+        <div class="category" id="flujo">
+            <h2 class="category-title"><span class="icon"><i class="fas fa-sync-alt"></i></span>Flujo de Trabajo Básico</h2>
+            
+            <div class="command-item">
+                <div class="description" style="font-size: 1.1em; line-height: 2;">
+                    <strong>1.</strong> <code style="background: #2c3e50; color: #2ecc71; padding: 5px; border-radius: 3px;">git status</code> → Ver qué archivos cambiaron<br>
+                    <strong>2.</strong> <code style="background: #2c3e50; color: #2ecc71; padding: 5px; border-radius: 3px;">git add .</code> → Preparar todos los cambios<br>
+                    <strong>3.</strong> <code style="background: #2c3e50; color: #2ecc71; padding: 5px; border-radius: 3px;">git commit -m "descripción"</code> → Guardar los cambios<br>
+                    <strong>4.</strong> <code style="background: #2c3e50; color: #2ecc71; padding: 5px; border-radius: 3px;">git push origin "rama"</code> → Subir al repositorio remoto
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BOTÓN FLOTANTE VOLVER AL MENÚ -->
+    <a href="#menu" class="btn-volver-menu" id="btnVolverMenu" title="Volver al menú">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+        function copyCommand(button, command) {
+            // Copiar al portapapeles
+            navigator.clipboard.writeText(command).then(() => {
+                // Cambiar el texto y estilo del botón
+                const originalHTML = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> Copiado';
+                button.classList.add('copied');
+                
+                // Volver al estado original después de 2 segundos
+                setTimeout(() => {
+                    button.innerHTML = originalHTML;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Error al copiar:', err);
+                alert('No se pudo copiar el comando');
+            });
+        }
+
+        // Mostrar/ocultar botón flotante según el scroll
+        window.addEventListener('scroll', function() {
+            const btnVolver = document.getElementById('btnVolverMenu');
+            if (window.scrollY > 400) {
+                btnVolver.classList.add('visible');
+            } else {
+                btnVolver.classList.remove('visible');
+            }
+        });
+
+        // Scroll suave para los enlaces del menú
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
